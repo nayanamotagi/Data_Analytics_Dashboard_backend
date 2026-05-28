@@ -18,6 +18,7 @@ const allowedOrigins = process.env.ALLOWED_ORIGINS
   : [
     'http://localhost:3000',
     'https://data-analytics-dashboard-frontend-9ar7m2a3g.vercel.app',
+    'https://data-analytics-dashboard-frontend-7rug0fp0r.vercel.app',
   ];
 
 app.use((req, res, next) => {
