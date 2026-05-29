@@ -19,8 +19,19 @@ app.use((req, res, next) => {
   next();
 });
 
+const allowedOrigins = [
+  'https://data-analytics-dashboard-frontend-4ooydz6r7.vercel.app',
+  'https://data-analytics-dashboard-frontend-optlcqoj8.vercel.app',
+];
+
 const corsOptions = {
-  origin: 'https://data-analytics-dashboard-frontend-optlcqoj8.vercel.app',
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true,
