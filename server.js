@@ -22,6 +22,7 @@ app.use((req, res, next) => {
 const allowedOrigins = [
   'https://data-analytics-dashboard-frontend-4ooydz6r7.vercel.app',
   'https://data-analytics-dashboard-frontend-optlcqoj8.vercel.app',
+  'https://data-analytics-dashboard-frontend-1h16fvg9c.vercel.app',
 ];
 
 const corsOptions = {
