@@ -12,15 +12,6 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5000;
 // Middleware
-// Configure allowed origins via env var `ALLOWED_ORIGINS` (comma-separated).
-const allowedOrigins = process.env.ALLOWED_ORIGINS
-  ? process.env.ALLOWED_ORIGINS.split(',').map(s => s.trim())
-  : [
-    'http://localhost:3000',
-    'https://data-analytics-dashboard-frontend-9ar7m2a3g.vercel.app',
-    'https://data-analytics-dashboard-frontend-7rug0fp0r.vercel.app',
-  ];
-
 app.use((req, res, next) => {
   console.log(
     `[${new Date().toISOString()}] ${req.method} ${req.originalUrl} Host:${req.headers.host} Origin:${req.headers.origin}`
@@ -29,13 +20,8 @@ app.use((req, res, next) => {
 });
 
 const corsOptions = {
-  origin: (origin, callback) => {
-    if (!origin) return callback(null, true); // allow server-to-server or curl requests with no origin
-    if (allowedOrigins.includes(origin)) return callback(null, true);
-    console.warn(`CORS blocked for origin: ${origin}`);
-    return callback(new Error('Not allowed by CORS'));
-  },
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  origin: 'https://data-analytics-dashboard-frontend-optlcqoj8.vercel.app',
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true,
 };
